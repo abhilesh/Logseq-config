@@ -1,0 +1,690 @@
+/***************************************************************
+********************** LOGSEQ PUBLISH CSS **********************
+******************** Dark Coffee / Accent Theme ****************
+***************************************************************/
+
+/* ------------------------------------------------------------
+   Theme variables
+------------------------------------------------------------ */
+
+:root {
+    color-scheme: dark light;
+    /* Main palette */
+    --accent: #C96552;
+    --accent-hover: #D9816F;
+
+    --publish-bg: #151211;
+    --publish-surface: #1d1816;
+    --publish-surface-2: #241d1a;
+    --publish-border: rgba(201, 101, 82, 0.24);
+
+    --publish-text: #E8D8C8;
+    --publish-muted: #A8978D;
+    --publish-faint: #7D6E66;
+
+    /* Dotted background */
+    --dot-color: rgba(232, 216, 200, 0.075);
+    --dot-size: 1px;
+    --dot-spacing: 24px;
+
+    /* Code block palette */
+    --code-bg: #1f1815;
+    --code-bg-soft: #241d1a;
+    --code-border: rgba(201, 101, 82, 0.35);
+    --code-text: #E8D8C8;
+    --code-muted: #9F8B80;
+    --code-line-height: 1.6;
+    --code-line-number-y: 0px;
+
+    /* Syntax colours */
+    --code-keyword: #D9816F;
+    --code-string: #D7A86E;
+    --code-comment: #9F8B80;
+    --code-function: #E0BC86;
+    --code-number: #C96552;
+    --code-variable: #E8D8C8;
+    --code-property: #E0BC86;
+    --code-operator: #D9816F;
+    --code-punctuation: rgba(232, 216, 200, 0.62);
+
+    /* Inline code */
+    --inline-code-bg: rgba(232, 216, 200, 0.055);
+    --inline-code-border: rgba(232, 216, 200, 0.10);
+    --inline-code-text: #D7C3B6;
+  }
+
+   /* ------------------------------------------------------------
+     Dynamic light theme
+     Supports browser preference and possible Logseq theme attrs
+  ------------------------------------------------------------ */
+
+  @media (prefers-color-scheme: light) {
+    :root {
+      color-scheme: light;
+
+      --accent: #B85C4A;
+      --accent-hover: #934839;
+
+      --publish-bg: #F7F1EA;
+      --publish-surface: #FFF9F3;
+      --publish-surface-2: #F0E3D8;
+      --publish-border: rgba(120, 82, 65, 0.22);
+
+      --publish-text: #2F2521;
+      --publish-muted: #6F5A50;
+      --publish-faint: #9A8579;
+
+      --dot-color: rgba(120, 82, 65, 0.11);
+
+      --code-bg: #FFF9F3;
+      --code-bg-soft: #F0E3D8;
+      --code-border: rgba(184, 92, 74, 0.35);
+      --code-text: #2F2521;
+      --code-muted: #8B7468;
+
+      --code-keyword: #B85C4A;
+      --code-string: #8A5F22;
+      --code-comment: #8B7468;
+      --code-function: #9A5A2E;
+      --code-number: #A84E40;
+      --code-variable: #2F2521;
+      --code-property: #8A5F22;
+      --code-operator: #B85C4A;
+      --code-punctuation: rgba(47, 37, 33, 0.62);
+
+      --inline-code-bg: rgba(184, 92, 74, 0.08);
+      --inline-code-border: rgba(184, 92, 74, 0.16);
+      --inline-code-text: #6E4638;
+    }
+  }
+
+  /* Also support common Logseq/theme attributes if present */
+  html[data-theme="light"],
+  body[data-theme="light"],
+  html.light,
+  body.light {
+    color-scheme: light;
+
+    --accent: #B85C4A;
+    --accent-hover: #934839;
+
+    --publish-bg: #F7F1EA;
+    --publish-surface: #FFF9F3;
+    --publish-surface-2: #F0E3D8;
+    --publish-border: rgba(120, 82, 65, 0.22);
+
+    --publish-text: #2F2521;
+    --publish-muted: #6F5A50;
+    --publish-faint: #9A8579;
+
+    --dot-color: rgba(120, 82, 65, 0.11);
+
+    --code-bg: #FFF9F3;
+    --code-bg-soft: #F0E3D8;
+    --code-border: rgba(184, 92, 74, 0.35);
+    --code-text: #2F2521;
+    --code-muted: #8B7468;
+
+    --code-keyword: #B85C4A;
+    --code-string: #8A5F22;
+    --code-comment: #8B7468;
+    --code-function: #9A5A2E;
+    --code-number: #A84E40;
+    --code-variable: #2F2521;
+    --code-property: #8A5F22;
+    --code-operator: #B85C4A;
+    --code-punctuation: rgba(47, 37, 33, 0.62);
+
+    --inline-code-bg: rgba(184, 92, 74, 0.08);
+    --inline-code-border: rgba(184, 92, 74, 0.16);
+    --inline-code-text: #6E4638;
+  }
+
+  /* ------------------------------------------------------------
+     General page styling + dotted background
+  ------------------------------------------------------------ */
+
+  html,
+  body {
+    background-color: var(--publish-bg) !important;
+    background-image:
+      radial-gradient(
+        var(--dot-color) var(--dot-size),
+        transparent var(--dot-size)
+      ) !important;
+    background-size: var(--dot-spacing) var(--dot-spacing) !important;
+    background-position: 0 0 !important;
+    background-attachment: fixed !important;
+    color: var(--publish-text) !important;
+    font-size: 16px;
+    line-height: 1.65;
+  }
+
+  body {
+    font-family:
+      Inter,
+      ui-sans-serif,
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      sans-serif;
+  }
+
+  /* Main content readability */
+  main,
+  #app,
+  .cp__sidebar-main-content,
+  .page,
+  .page-content,
+  .ls-block,
+  .block-content,
+  .content {
+    color: var(--publish-text) !important;
+  }
+
+  /* Give published pages a comfortable reading width */
+  .page,
+  .page-content,
+  .ls-block,
+  .block-content {
+    max-width: 100%;
+  }
+
+
+  /* ------------------------------------------------------------
+     Headings
+  ------------------------------------------------------------ */
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: var(--publish-text) !important;
+    line-height: 1.25;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.55rem;
+  }
+
+  h3 {
+    font-size: 1.3rem;
+  }
+
+  h4 {
+    font-size: 1.1rem;
+  }
+
+
+  /* ------------------------------------------------------------
+     Links, page refs, tags
+  ------------------------------------------------------------ */
+
+  a,
+  .page-ref,
+  .page-reference,
+  .block-ref,
+  .block-ref a,
+  .external-link,
+  .tag,
+  a.tag,
+  .content .tag,
+  .content .page-ref,
+  .references .page-ref,
+  .references-blocks .page-ref,
+  .breadcrumb a,
+  .breadcrumb .page-ref {
+    color: var(--accent) !important;
+    text-decoration-color: rgba(201, 101, 82, 0.45);
+  }
+
+  a:hover,
+  .page-ref:hover,
+  .page-reference:hover,
+  .block-ref:hover,
+  .external-link:hover,
+  .tag:hover {
+    color: var(--accent-hover) !important;
+  }
+
+
+  /* ------------------------------------------------------------
+     Fenced code block surface
+  ------------------------------------------------------------ */
+
+  pre,
+  .extensions__code,
+  .cp__fenced-code-block {
+    background: var(--code-bg) !important;
+    color: var(--code-text) !important;
+    border: 1px solid var(--code-border) !important;
+    border-left: 4px solid var(--accent) !important;
+    border-radius: 12px !important;
+    padding: 1rem 1.1rem !important;
+    margin: 1rem 0 !important;
+    overflow-x: auto !important;
+    max-width: 100% !important;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.22);
+  }
+
+  /* Code text baseline */
+  pre code,
+  .extensions__code code,
+  .cp__fenced-code-block code,
+  .cm-editor,
+  .cm-line {
+    background: transparent !important;
+    color: var(--code-text) !important;
+    font-family:
+      "SFMono-Regular",
+      "JetBrains Mono",
+      "Menlo",
+      "Consolas",
+      monospace !important;
+    font-size: 0.9rem !important;
+    line-height: var(--code-line-height) !important;
+    white-space: pre !important;
+  }
+
+  /* Preserve long code lines with horizontal scroll */
+  pre {
+    white-space: pre !important;
+  }
+
+
+  /* ------------------------------------------------------------
+     Inline code — subtle
+  ------------------------------------------------------------ */
+
+  p code,
+  li code,
+  td code,
+  th code,
+  .block-content code,
+  .content code,
+  :not(pre) > code {
+    background: var(--inline-code-bg) !important;
+    color: var(--inline-code-text) !important;
+    border: 1px solid var(--inline-code-border) !important;
+    border-radius: 5px !important;
+    padding: 0.08em 0.32em !important;
+    font-size: 0.88em !important;
+    font-family:
+      "SFMono-Regular",
+      "JetBrains Mono",
+      "Menlo",
+      "Consolas",
+      monospace !important;
+  }
+
+  /* Do not let inline-code styling affect fenced code */
+  pre code,
+  .extensions__code code,
+  .cp__fenced-code-block code,
+  .cm-editor code {
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    color: var(--code-text) !important;
+  }
+
+
+  /* ------------------------------------------------------------
+     CodeMirror code blocks / line number alignment
+  ------------------------------------------------------------ */
+
+  .extensions__code .cm-editor,
+  .cp__fenced-code-block .cm-editor,
+  .cm-editor {
+    background: transparent !important;
+    color: var(--code-text) !important;
+    font-family:
+      "SFMono-Regular",
+      "JetBrains Mono",
+      "Menlo",
+      "Consolas",
+      monospace !important;
+  }
+
+  /* Same rhythm for code and gutter */
+  .extensions__code .cm-scroller,
+  .cp__fenced-code-block .cm-scroller,
+  .cm-scroller {
+    line-height: var(--code-line-height) !important;
+    font-family:
+      "SFMono-Regular",
+      "JetBrains Mono",
+      "Menlo",
+      "Consolas",
+      monospace !important;
+  }
+
+  /* Code content area */
+  .extensions__code .cm-content,
+  .cp__fenced-code-block .cm-content,
+  .cm-content {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Individual code lines */
+  .extensions__code .cm-line,
+  .cp__fenced-code-block .cm-line,
+  .cm-line {
+    line-height: var(--code-line-height) !important;
+  }
+
+  /* Gutter / line number background */
+  .extensions__code .cm-gutters,
+  .cp__fenced-code-block .cm-gutters,
+  .cm-gutters {
+    background: transparent !important;
+    border-right: 1px solid rgba(201, 101, 82, 0.25) !important;
+    color: var(--code-muted) !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    margin-right: 0.75rem !important;
+  }
+
+  /* Line number text */
+  .extensions__code .cm-lineNumbers .cm-gutterElement,
+  .cp__fenced-code-block .cm-lineNumbers .cm-gutterElement,
+  .cm-lineNumbers .cm-gutterElement {
+    line-height: var(--code-line-height) !important;
+    padding: 0 0.65rem 0 0.25rem !important;
+    min-width: 2.2rem !important;
+    text-align: right !important;
+    color: var(--code-muted) !important;
+    transform: translateY(var(--code-line-number-y));
+  }
+
+  /* Active line should not create a harsh background */
+  .cm-activeLine,
+  .cm-activeLineGutter {
+    background: rgba(201, 101, 82, 0.08) !important;
+  }
+
+
+  /* ------------------------------------------------------------
+     Syntax highlighting
+     Covers CodeMirror 6, Prism, Highlight.js, and Logseq variants
+  ------------------------------------------------------------ */
+
+  /* Keywords, booleans, operators */
+  .cm-keyword,
+  .cm-operator,
+  .cm-line .tok-keyword,
+  .cm-line .tok-operator,
+  .cm-content .tok-keyword,
+  .cm-content .tok-operator,
+  .token.keyword,
+  .token.operator,
+  .token.boolean,
+  .hljs-keyword,
+  .hljs-built_in,
+  .hljs-selector-tag,
+  .hljs-literal,
+  .ͼb,
+  .ͼc {
+    color: var(--code-keyword) !important;
+  }
+
+  /* Strings */
+  .cm-string,
+  .cm-string-2,
+  .cm-line .tok-string,
+  .cm-content .tok-string,
+  .token.string,
+  .token.char,
+  .token.attr-value,
+  .hljs-string,
+  .hljs-regexp,
+  .ͼe {
+    color: var(--code-string) !important;
+  }
+
+  /* Comments */
+  .cm-comment,
+  .cm-line .tok-comment,
+  .cm-content .tok-comment,
+  .token.comment,
+  .token.prolog,
+  .token.doctype,
+  .hljs-comment,
+  .hljs-quote,
+  .ͼm {
+    color: var(--code-comment) !important;
+    font-style: italic !important;
+  }
+
+  /* Functions, definitions, class names */
+  .cm-def,
+  .cm-variable-2,
+  .cm-line .tok-definition,
+  .cm-content .tok-definition,
+  .token.function,
+  .token.class-name,
+  .hljs-title,
+  .hljs-function,
+  .ͼg,
+  .ͼi {
+    color: var(--code-function) !important;
+  }
+
+  /* Numbers, constants */
+  .cm-number,
+  .cm-atom,
+  .cm-line .tok-number,
+  .cm-content .tok-number,
+  .token.number,
+  .token.constant,
+  .hljs-number,
+  .ͼd {
+    color: var(--code-number) !important;
+  }
+
+  /* Variables */
+  .cm-variable,
+  .cm-variable-3,
+  .cm-line .tok-variableName,
+  .cm-content .tok-variableName,
+  .token.variable,
+  .hljs-variable,
+  .hljs-template-variable {
+    color: var(--code-variable) !important;
+  }
+
+  /* Properties, YAML keys, attributes */
+  .cm-property,
+  .cm-attribute,
+  .cm-line .tok-propertyName,
+  .cm-content .tok-propertyName,
+  .token.property,
+  .token.attr-name,
+  .hljs-attr,
+  .hljs-attribute,
+  .hljs-property,
+  .tok-propertyName {
+    color: var(--code-property) !important;
+  }
+
+  /* Punctuation */
+  .cm-punctuation,
+  .cm-line .tok-punctuation,
+  .cm-content .tok-punctuation,
+  .token.punctuation,
+  .hljs-punctuation,
+  .tok-punctuation {
+    color: var(--code-punctuation) !important;
+  }
+
+  /* Operators */
+  .tok-operator,
+  .hljs-operator {
+    color: var(--code-operator) !important;
+  }
+
+  /* Meta, tags, and section labels */
+  .token.tag,
+  .token.selector,
+  .hljs-name,
+  .hljs-section,
+  .hljs-tag {
+    color: var(--code-keyword) !important;
+  }
+
+  /* Plain fallback */
+  .hljs,
+  .token,
+  .cm-line {
+    color: var(--code-text);
+  }
+
+
+  /* ------------------------------------------------------------
+     Tables
+  ------------------------------------------------------------ */
+
+  .table-wrapper {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow-x: auto;
+  }
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1rem 0;
+  }
+
+  table th,
+  table td {
+    border: 1px solid var(--publish-border);
+    padding: 0.55rem 0.7rem;
+    min-width: 100px;
+    word-wrap: break-word;
+  }
+
+  table th {
+    background: var(--publish-surface-2);
+    color: var(--publish-text);
+  }
+
+  table td {
+    background: var(--publish-surface);
+  }
+
+
+  /* ------------------------------------------------------------
+     Blockquote / callout-like styling
+  ------------------------------------------------------------ */
+
+  blockquote {
+    border-left: 4px solid var(--accent);
+    background: rgba(201, 101, 82, 0.08);
+    color: var(--publish-text);
+    padding: 0.75rem 1rem;
+    margin: 1rem 0;
+    border-radius: 0 10px 10px 0;
+  }
+
+
+  /* ------------------------------------------------------------
+     Horizontal rules
+  ------------------------------------------------------------ */
+
+  hr {
+    border: none;
+    border-top: 1px solid var(--publish-border);
+    margin: 2rem 0;
+  }
+
+
+  /* ------------------------------------------------------------
+     Images and embeds
+  ------------------------------------------------------------ */
+
+  img {
+    max-width: 100%;
+    border-radius: 10px;
+  }
+
+  iframe {
+    max-width: 100%;
+  }
+
+
+  /* ------------------------------------------------------------
+     Optional: slightly nicer scrollbars
+  ------------------------------------------------------------ */
+
+  pre::-webkit-scrollbar,
+  .extensions__code::-webkit-scrollbar,
+  .cp__fenced-code-block::-webkit-scrollbar {
+    height: 10px;
+  }
+
+  pre::-webkit-scrollbar-track,
+  .extensions__code::-webkit-scrollbar-track,
+  .cp__fenced-code-block::-webkit-scrollbar-track {
+    background: var(--code-bg-soft);
+    border-radius: 999px;
+  }
+
+  pre::-webkit-scrollbar-thumb,
+  .extensions__code::-webkit-scrollbar-thumb,
+  .cp__fenced-code-block::-webkit-scrollbar-thumb {
+    background: rgba(201, 101, 82, 0.45);
+    border-radius: 999px;
+  }
+
+  pre::-webkit-scrollbar-thumb:hover,
+  .extensions__code::-webkit-scrollbar-thumb:hover,
+  .cp__fenced-code-block::-webkit-scrollbar-thumb:hover {
+    background: rgba(217, 129, 111, 0.65);
+  }
+
+  /* ------------------------------------------------------------
+     Copy button for published code blocks
+  ------------------------------------------------------------ */
+
+  .published-code-wrapper {
+    position: relative;
+    margin: 1rem 0;
+  }
+
+  .published-code-wrapper pre {
+    padding-top: 2.8rem !important;
+  }
+
+  .published-code-copy {
+    position: absolute;
+    top: 0.65rem;
+    right: 0.75rem;
+    z-index: 5;
+
+    background: rgba(232, 216, 200, 0.08);
+    color: var(--code-muted);
+    border: 1px solid var(--inline-code-border);
+    border-radius: 6px;
+
+    padding: 0.25rem 0.55rem;
+    font-size: 0.78rem;
+    line-height: 1;
+    cursor: pointer;
+  }
+
+  .published-code-copy:hover {
+    background: rgba(201, 101, 82, 0.14);
+    color: var(--accent-hover);
+    border-color: var(--code-border);
+  }

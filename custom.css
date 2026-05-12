@@ -1,0 +1,303 @@
+@import url("https://raw.githack.com/stdword/logseq-bujo-theme/main/src/base.css");
+@import url("https://raw.githack.com/stdword/logseq-bujo-theme/main/src/dark-coffee.css");
+
+/***************************************************************
+**************************** CUSTOM ******************************
+***************************************************************/
+/* wordcount button */
+.wordcount-btn {
+    border: 1px solid var(--ls-border-color);
+  	background-color: var(--ls-primary-background-color);
+    box-shadow: none;
+    white-space: initial;
+    color: var(--ls-primary-text-color);
+    padding: 1px 8px;
+    border-radius: 4px;
+    user-select: none;
+    cursor: default;
+    display: flex;
+    align-content: center;
+}
+
+
+/* better table wrapping */
+.table-wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+table td {
+  min-width:100px;
+  word-wrap:break-word;
+}
+
+/* better youtube embeds */
+/* iframe[id^='youtube-player'] {
+  height: 500px !important;
+}
+*/
+
+iframe[id^='youtube-player'] {
+  height: 500px !important;
+  /* width: 400px !important; */
+}
+
+div.ls-wide-mode iframe[id^='youtube-player'] {
+  height: 600px !important;
+  width: 100% !important;
+}
+
+/*
+>>> BEGIN: #kanban view
+  inspired by https://github.com/cannibalox/logtools
+*/
+/* layout */
+[data-refs-self*='kanban'] > .block-children-container > .block-children {
+    display: inline-flex;
+    position: relative;
+    margin: 0 10px;
+    border: 0;
+    overflow-x: auto;
+}
+/* column */
+[data-refs-self*='kanban']
+    > .block-children-container
+    > .block-children
+    > .ls-block {
+    display: inline-block;
+    padding: 0;
+    width: inherit;
+    min-width: 200px;
+    margin-right: 10px;
+    border-radius: 4px;
+    background-color: var(--ls-tertiary-background-color);
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow);
+}
+/* header */
+[data-refs-self*='kanban']
+    > .block-children-container
+    > .block-children
+    > .ls-block
+    > .flex-row {
+    background-color: var(--ls-secondary-background-color);
+    border-bottom: 1px solid var(--border);
+    padding: 4px 6px;
+}
+[data-refs-self*='kanban']
+    > .block-children-container
+    > .block-children
+    > .ls-block
+    > .flex-row
+    > .block-content-wrapper {
+    width: 100%;
+}
+[data-refs-self*='kanban']
+    > .block-children-container
+    > .block-children
+    > .ls-block
+    > .flex-row
+    > .block-content-wrapper
+    > .flex {
+    overflow: hidden;
+}
+[data-refs-self*='kanban']
+    > .block-children-container
+    > .block-children
+    > .ls-block
+    > .flex-row
+    .inline,
+[data-refs-self*='kanban']
+    > .block-children-container
+    > .block-children
+    > .ls-block
+    > .flex-row
+    .inline
+    .page-ref {
+    font-weight: bold;
+}
+[data-refs-self*='kanban'] .todo-master-progress-bar {
+    max-width: 90%;
+}
+/* content */
+[data-refs-self*='kanban']
+    > .block-children-container
+    > .block-children
+    > .ls-block
+    > .block-children-container {
+    margin: 0 !important;
+}
+[data-refs-self*='kanban']
+    > .block-children-container
+    > .block-children
+    > .ls-block::before {
+    display: none;
+}
+[data-refs-self*='kanban']
+    > .block-children-container
+    > .block-children
+    > .ls-block:last-child {
+    margin-bottom: 0;
+}
+[data-refs-self*='kanban']
+    > .block-children-container
+    > .block-children
+    > .ls-block
+    > .flex-row
+    > .mr-1 {
+    display: none;
+}
+[data-refs-self*='kanban']
+    > .block-children-container
+    > .block-children
+    > .ls-block
+    > .block-children-container
+    > .block-children {
+    padding: 10px 0;
+    border: 0;
+}
+/*
+  <<<< END: #kanban view
+*/
+
+html[data-color=none] {
+    --ls-block-bullet-active-color: var(--ls-link-text-color);
+}
+
+/* link accent */
+:root,
+html[data-theme=dark],
+html[data-theme=light],
+html[data-color=none] {
+    --accent: #C96552;
+    --color-accent: #C96552;
+    --ct-accent-color: #C96552;
+    --ct-primary-color: #C96552;
+    --ct-link-color: #C96552;
+    --ct-page-reference-color: #C96552;
+    --ct-tag-color: #C96552;
+    --green: #C96552;
+    --ls-link-text-color: #C96552;
+    --ls-link-text-hover-color: #D9816F;
+    --ls-link-ref-text-color: #C96552;
+    --ls-block-ref-link-text-color: #C96552;
+    --ls-tag-text-color: #C96552;
+    --ls-block-bullet-active-color: #C96552;
+    --ls-active-primary-color: #C96552;
+    --ls-active-secondary-color: #C96552;
+    --ls-selection-color: #C96552;
+}
+
+a,
+.page-ref,
+.page-reference,
+.block-ref,
+.block-ref a,
+.external-link,
+.tag,
+a.tag,
+.content .tag,
+.content .page-ref,
+.references .page-ref,
+.references-blocks .page-ref,
+.breadcrumb a,
+.breadcrumb .page-ref {
+    color: #C96552;
+}
+
+a:hover,
+.page-ref:hover,
+.page-reference:hover,
+.block-ref:hover,
+.external-link:hover,
+.tag:hover {
+    color: #D9816F;
+}
+
+/* syntax highlighting only; preserve imported code block surfaces */
+.cm-s-default .cm-keyword,
+.cm-keyword,
+.ͼb,
+.ͼc,
+.cm-line .tok-keyword,
+.cm-content .tok-keyword,
+.token.keyword,
+.token.operator,
+.token.punctuation,
+.hljs-keyword,
+.hljs-built_in,
+.hljs-selector-tag {
+    color: #D9816F !important;
+}
+
+.cm-s-default .cm-string,
+.cm-string,
+.ͼe,
+.cm-line .tok-string,
+.cm-content .tok-string,
+.token.string,
+.token.char,
+.token.attr-value,
+.hljs-string,
+.hljs-regexp {
+    color: #D7A86E !important;
+}
+
+.cm-s-default .cm-comment,
+.cm-comment,
+.ͼm,
+.cm-line .tok-comment,
+.cm-content .tok-comment,
+.token.comment,
+.token.prolog,
+.token.doctype,
+.hljs-comment,
+.hljs-quote {
+    color: #9F8B80 !important;
+    font-style: italic;
+}
+
+.cm-s-default .cm-def,
+.cm-s-default .cm-variable-2,
+.cm-def,
+.cm-variable-2,
+.ͼg,
+.ͼi,
+.cm-line .tok-variableName,
+.cm-content .tok-variableName,
+.cm-line .tok-definition,
+.cm-content .tok-definition,
+.token.function,
+.token.class-name,
+.token.property,
+.hljs-title,
+.hljs-function {
+    color: #E0BC86 !important;
+}
+
+.cm-s-default .cm-number,
+.cm-number,
+.ͼd,
+.cm-line .tok-number,
+.cm-content .tok-number,
+.token.number,
+.token.boolean,
+.token.constant,
+.hljs-number,
+.hljs-literal {
+    color: #C96552 !important;
+}
+
+/* Toolbar buttons */
+#head button.ui__button {
+  background-color: transparent !important;
+}
+
+/* Page icons */
+button.ui__button:has(.ls-icon-color-wrap .ui__icon[class*="ls-icon-"]) {
+  background-color: transparent !important;
+}
+
+.bullet-container:not(.typed-list).bullet-closed {
+  background-color: transparent !important;
+}
