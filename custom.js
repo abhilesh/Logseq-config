@@ -1,4 +1,4 @@
-// Show day of week and week number on main journal page titles only.
+// Show day of week and week number on all visible journal page titles.
 (function () {
     const INFO_CLASS = "journal-date-info";
     const SIDEBAR_SELECTOR = [
@@ -17,12 +17,7 @@
     ].join(",");
     const JOURNAL_DATE_RE =
       /([A-Z][a-z]+)\s+(\d{1,2})(?:st|nd|rd|th),\s+(\d{4})/;
-
-    function removeExistingInfo() {
-      document.querySelectorAll(`.${INFO_CLASS}`).forEach((el) => {
-        el.remove();
-      });
-    }
+    let scheduled = false;
 
     function journalDateFromText(text) {
       const match = JOURNAL_DATE_RE.exec(text.trim());
@@ -42,46 +37,46 @@
       return rect.width > 0 && rect.height > 0;
     }
 
-    function directText(el) {
+    function candidateText(el) {
       return Array.from(el.childNodes)
-        .filter((node) => node.nodeType === Node.TEXT_NODE)
+        .filter(
+          (node) =>
+            node.nodeType === Node.TEXT_NODE ||
+            (node.nodeType === Node.ELEMENT_NODE &&
+              !node.classList.contains(INFO_CLASS))
+        )
         .map((node) => node.textContent)
         .join(" ")
+        .replace(/\s+/g, " ")
         .trim();
     }
 
-    function candidateText(el) {
-      return directText(el);
-    }
-
-    function mainTitleCandidate() {
-      const viewportWidth = window.innerWidth || document.documentElement.clientWidth;
+    function titleCandidates() {
       const candidates = Array.from(document.body.querySelectorAll("*"))
         .filter((el) => {
-          if (el.querySelector(`.${INFO_CLASS}`)) return false;
           if (!visibleElement(el) || el.closest(SIDEBAR_SELECTOR)) return false;
-
-          const rect = el.getBoundingClientRect();
-          if (rect.left < Math.min(260, viewportWidth * 0.18)) return false;
 
           const text = candidateText(el);
           if (!JOURNAL_DATE_RE.test(text)) return false;
+          if (text.length >= 40) return false;
 
-          return text.length < 40;
-        })
-        .map((el) => {
-          const rect = el.getBoundingClientRect();
           const styles = window.getComputedStyle(el);
-          return {
-            el,
-            score:
-              parseFloat(styles.fontSize || "0") * 10 +
-              rect.height -
-              Math.max(rect.top, 0) / 100,
-          };
+          const fontSize = parseFloat(styles.fontSize || "0");
+          const tagName = el.tagName.toLowerCase();
+
+          return (
+            fontSize >= 20 ||
+            ["h1", "h2", "h3"].includes(tagName) ||
+            el.matches('[class*="title"], [class*="page"]')
+          );
         });
 
-      return candidates.sort((a, b) => b.score - a.score)[0]?.el;
+      return candidates.filter(
+        (candidate) =>
+          !candidates.some(
+            (other) => other !== candidate && candidate.contains(other)
+          )
+      );
     }
 
     function addInfo(title) {
@@ -90,20 +85,43 @@
       const journalDate = journalDateFromText(candidateText(title));
       if (!journalDate || Number.isNaN(journalDate.getTime())) return;
 
+      const label = ` ${journalDate.toLocaleString("default", {
+        weekday: "long",
+      })}, Week ${weekNumber(journalDate)}`;
+      const existing = title.querySelector(`:scope > .${INFO_CLASS}`);
+      if (existing) {
+        existing.textContent = label;
+        return;
+      }
+
       const span = document.createElement("span");
       span.className = INFO_CLASS;
       span.style = "opacity:0.5;font-size:0.7em;margin-left:0.35em";
-      span.textContent = ` ${journalDate.toLocaleString("default", {
-        weekday: "long",
-      })}, Week ${weekNumber(journalDate)}`;
+      span.textContent = label;
       title.append(span);
     }
 
     function insertInfo() {
-      removeExistingInfo();
-      addInfo(mainTitleCandidate());
+      const candidates = new Set(titleCandidates());
+      document.querySelectorAll(`.${INFO_CLASS}`).forEach((el) => {
+        if (!candidates.has(el.parentElement)) el.remove();
+      });
+      candidates.forEach(addInfo);
+    }
+
+    function scheduleInsertInfo() {
+      if (scheduled) return;
+      scheduled = true;
+      window.requestAnimationFrame(() => {
+        scheduled = false;
+        insertInfo();
+      });
     }
 
     insertInfo();
-    setInterval(insertInfo, 1000);
+    setInterval(insertInfo, 2000);
+    new MutationObserver(scheduleInsertInfo).observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
   })();
