@@ -290,14 +290,15 @@ a:hover,
 
 /* Toolbar buttons */
 #head button.ui__button {
-  background-color: transparent !important;
+    background-color: transparent !important;
 }
 
 /* Page icons */
 button.ui__button:has(.ls-icon-color-wrap .ui__icon[class*="ls-icon-"]) {
-  background-color: transparent !important;
+    background-color: transparent !important;
 }
 
-.bullet-container:not(.typed-list).bullet-closed {
-  background-color: transparent !important;
+/* Unhide page tags */
+.ls-page-title-container .ls-block-right>.block-tags {
+    opacity: 1 !important;
 }
