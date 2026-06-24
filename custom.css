@@ -214,6 +214,77 @@ a:hover,
     color: #D9816F;
 }
 
+/* BuJo-style block reference pills for Logseq DB and MD */
+:root,
+html[data-theme=dark],
+html[data-theme=light],
+html[data-color=none] {
+    --custom-block-ref-bg: rgba(55, 42, 35, .96);
+    --custom-block-ref-bg-hover: rgba(68, 51, 42, .98);
+}
+
+.block-ref-wrap {
+    border-bottom: none !important;
+    border-radius: 3px;
+    padding: 2px 5px;
+    background: var(--custom-block-ref-bg) !important;
+    text-decoration: none !important;
+}
+
+.block-ref-wrap:hover {
+    background: var(--custom-block-ref-bg-hover) !important;
+}
+
+.page-reference[data-ref]:has(.preview-ref-link .block-title-wrap) {
+    border-bottom: none !important;
+    background: transparent !important;
+}
+
+.page-reference[data-ref]:has(.preview-ref-link .block-title-wrap) .preview-ref-link > a.page-ref,
+.preview-ref-link > a.page-ref:has(.block-title-wrap) {
+    display: inline-flex;
+    align-items: baseline;
+    border-bottom: none !important;
+    border-radius: 3px;
+    padding: 2px 5px;
+    background: var(--custom-block-ref-bg) !important;
+    color: var(--ls-primary-text-color) !important;
+    line-height: 1.25;
+    text-decoration: none !important;
+}
+
+.page-reference[data-ref]:has(.preview-ref-link .block-title-wrap) .preview-ref-link > a.page-ref:hover,
+.preview-ref-link > a.page-ref:has(.block-title-wrap):hover {
+    background: var(--custom-block-ref-bg-hover) !important;
+}
+
+.block-ref-wrap > .block-ref,
+.block-ref-wrap > .block-ref > a {
+    color: var(--ls-primary-text-color) !important;
+}
+
+.block-ref-wrap .page-reference,
+.block-ref-wrap .page-reference .page-ref,
+.preview-ref-link > a.page-ref:has(.block-title-wrap) .page-reference,
+.preview-ref-link > a.page-ref:has(.block-title-wrap) .page-reference *,
+.preview-ref-link > a.page-ref:has(.block-title-wrap) [data-ref].page-reference,
+.preview-ref-link > a.page-ref:has(.block-title-wrap) [data-ref].page-reference *,
+.page-reference[data-ref]:has(.preview-ref-link .block-title-wrap) .preview-ref-link > a.page-ref .page-reference,
+.page-reference[data-ref]:has(.preview-ref-link .block-title-wrap) .preview-ref-link > a.page-ref .page-reference * {
+    color: #C96552 !important;
+}
+
+.block-ref-wrap .page-reference:hover,
+.block-ref-wrap .page-reference:hover .page-ref,
+.preview-ref-link > a.page-ref:has(.block-title-wrap) .page-reference:hover,
+.preview-ref-link > a.page-ref:has(.block-title-wrap) .page-reference:hover *,
+.preview-ref-link > a.page-ref:has(.block-title-wrap) [data-ref].page-reference:hover,
+.preview-ref-link > a.page-ref:has(.block-title-wrap) [data-ref].page-reference:hover *,
+.page-reference[data-ref]:has(.preview-ref-link .block-title-wrap) .preview-ref-link > a.page-ref .page-reference:hover,
+.page-reference[data-ref]:has(.preview-ref-link .block-title-wrap) .preview-ref-link > a.page-ref .page-reference:hover * {
+    color: #D9816F !important;
+}
+
 /* syntax highlighting only; preserve imported code block surfaces */
 .cm-s-default .cm-keyword,
 .cm-keyword,
