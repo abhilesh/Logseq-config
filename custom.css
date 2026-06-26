@@ -242,8 +242,9 @@ html[data-color=none] {
 
 .page-reference[data-ref]:has(.preview-ref-link .block-title-wrap) .preview-ref-link > a.page-ref,
 .preview-ref-link > a.page-ref:has(.block-title-wrap) {
-    display: inline-flex;
-    align-items: baseline;
+    display: inline;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
     border-bottom: none !important;
     border-radius: 3px;
     padding: 2px 5px;
