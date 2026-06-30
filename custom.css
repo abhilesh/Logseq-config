@@ -374,3 +374,14 @@ button.ui__button:has(.ls-icon-color-wrap .ui__icon[class*="ls-icon-"]) {
 .ls-page-title-container .ls-block-right>.block-tags {
     opacity: 1 !important;
 }
+
+/* Hide query-table navigation actions until their cell is hovered. */
+.custom-query .ls-table .table-block-title button.ui__button.opacity-0 {
+    opacity: 0 !important;
+    pointer-events: none;
+  }
+
+  .custom-query .ls-table .table-block-title button.ui__button.opacity-100 {
+    opacity: 1 !important;
+    pointer-events: auto;
+  }
