@@ -434,3 +434,207 @@ html.is-mobile .page-reference:has(.block-title-wrap) .page-reference:hover .pag
 html.is-mobile .page-reference:has(.block-title-wrap) .tag:hover {
     color: #D9816F !important;
 }
+
+/***************************************************************
+**************** MOBILE: LOGSEQ DB TABLE VIEWS ****************
+***************************************************************/
+
+html.is-mobile {
+    --mobile-db-table-bg: #221D1C;
+    --mobile-db-table-header-bg: #433936;
+    --mobile-db-table-control-bg: #3A302D;
+    --mobile-db-table-control-hover-bg: #4A3D38;
+    --mobile-db-table-toolbar-bg: transparent;
+    --mobile-db-table-border: rgba(201, 101, 82, .22);
+    --mobile-db-table-text: #C8B6A6;
+    --mobile-db-table-view-count: var(--mobile-db-table-text);
+    --mobile-db-table-muted-text: #9F8B80;
+    --mobile-db-table-accent: #C96552;
+    --mobile-db-table-accent-hover: #D9816F;
+}
+
+/* Flatten the verified right-hand DB-view action controls. */
+.ls-view-head .view-actions > button.ui__button.as-ghost,
+.ls-view-head .view-actions > button.ui__button.as-ghost:hover,
+.ls-view-head .view-actions > button.ui__button.as-ghost:active,
+.ls-view-head .view-actions > button.ui__button.as-ghost:focus-visible {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    color: var(--ls-secondary-text-color, #9F8B80) !important;
+}
+
+.ls-view-head .view-actions > button.ui__button.as-ghost :where(svg, i) {
+    color: currentColor !important;
+    stroke: currentColor !important;
+}
+
+/* Include wrapped and non-ghost action buttons on both runtimes. */
+html.is-mobile .ls-view-head .view-actions button.ui__button,
+html.is-mobile .ls-view-head .view-actions button.ui__button:hover,
+html.is-mobile .ls-view-head .view-actions button.ui__button:active,
+html.is-mobile .ls-view-head .view-actions button.ui__button:focus-visible,
+html:not(.is-mobile) .ls-view-head .view-actions button.ui__button,
+html:not(.is-mobile) .ls-view-head .view-actions button.ui__button:hover,
+html:not(.is-mobile) .ls-view-head .view-actions button.ui__button:active,
+html:not(.is-mobile) .ls-view-head .view-actions button.ui__button:focus-visible {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    color: var(--ls-secondary-text-color, #9F8B80) !important;
+}
+
+html.is-mobile .ls-view-head .view-actions button.ui__button :where(svg, i),
+html:not(.is-mobile) .ls-view-head .view-actions button.ui__button :where(svg, i) {
+    color: currentColor !important;
+    stroke: currentColor !important;
+}
+
+/* Both verified left-hand controls are rendered inside `.views`. */
+html.is-mobile .ls-view-head .views button.ui__button,
+html.is-mobile .ls-view-head .views button.ui__button:hover,
+html.is-mobile .ls-view-head .views button.ui__button:active,
+html.is-mobile .ls-view-head .views button.ui__button:focus-visible,
+html:not(.is-mobile) .ls-view-head .views button.ui__button,
+html:not(.is-mobile) .ls-view-head .views button.ui__button:hover,
+html:not(.is-mobile) .ls-view-head .views button.ui__button:active,
+html:not(.is-mobile) .ls-view-head .views button.ui__button:focus-visible {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    color: var(--ls-secondary-text-color, #9F8B80) !important;
+}
+
+html.is-mobile .ls-view-head .views button.ui__button :where(svg, i),
+html:not(.is-mobile) .ls-view-head .views button.ui__button :where(svg, i) {
+    color: currentColor !important;
+    stroke: currentColor !important;
+}
+
+/*
+ * DB mobile uses div-based table classes. Exclude Tabler/icon classes because
+ * their class names also contain the substring "table".
+ */
+html.is-mobile [class*="table"]:not([class*="tabler"]):not([class*="icon"]):not([class*="ti-"]) {
+    background-color: var(--mobile-db-table-bg) !important;
+    color: var(--mobile-db-table-text) !important;
+    border-color: var(--mobile-db-table-border) !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+html.is-mobile [class*="table"]:not([class*="tabler"]):not([class*="icon"]):not([class*="ti-"])
+    :where(span, a, button, input, textarea, select) {
+    border-color: var(--mobile-db-table-border) !important;
+}
+
+html.is-mobile :where(
+    [class*="table-header"],
+    [class*="table-head"],
+    [class*="header-cell"],
+    [class*="column-header"]
+):not([class*="tabler"]):not([class*="icon"]):not([class*="ti-"]) {
+    background-color: var(--mobile-db-table-header-bg) !important;
+    color: var(--mobile-db-table-text) !important;
+    border-color: var(--mobile-db-table-border) !important;
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+}
+
+html.is-mobile [class*="table"]:not([class*="tabler"]):not([class*="icon"]):not([class*="ti-"])
+    :where(.page-reference, .page-ref, .tag, a) {
+    color: var(--mobile-db-table-accent) !important;
+}
+
+html.is-mobile [class*="table"]:not([class*="tabler"]):not([class*="icon"]):not([class*="ti-"])
+    :where(.page-reference, .page-ref, .tag, a):hover {
+    color: var(--mobile-db-table-accent-hover) !important;
+}
+
+html.is-mobile [class*="table"]:not([class*="tabler"]):not([class*="icon"]):not([class*="ti-"])
+    :where([class*="muted"], [class*="secondary"]) {
+    color: var(--mobile-db-table-muted-text) !important;
+}
+
+/* Mobile table toolbar fallbacks retained for alternate DB table layouts. */
+html.is-mobile :where(div, section):has(> button :where(
+    [class*="sort"],
+    [class*="filter"]
+)) > button {
+    background: var(--mobile-db-table-toolbar-bg) !important;
+    color: var(--mobile-db-table-muted-text) !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+html.is-mobile :where(div, section):has(> button :where(
+    [class*="sort"],
+    [class*="filter"]
+)) > button:hover,
+html.is-mobile :where(div, section):has(> button :where(
+    [class*="sort"],
+    [class*="filter"]
+)) > button:active {
+    background: var(--mobile-db-table-toolbar-bg) !important;
+    color: var(--mobile-db-table-muted-text) !important;
+}
+
+html.is-mobile :where(div, section):has(> button :where(
+    [class*="sort"],
+    [class*="filter"]
+)) > button :where(svg, i, [class*="icon"], [class*="tabler"]) {
+    color: var(--mobile-db-table-muted-text) !important;
+    stroke: currentColor !important;
+}
+
+html.is-mobile :where(div, section):has(> button [class*="table"]):has(> button [class*="plus"]) > button {
+    background: var(--mobile-db-table-toolbar-bg) !important;
+    color: var(--mobile-db-table-muted-text) !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+html.is-mobile :where(div, section):has(> button [class*="table"]):has(> button [class*="plus"]) > button:hover,
+html.is-mobile :where(div, section):has(> button [class*="table"]):has(> button [class*="plus"]) > button:active {
+    background: var(--mobile-db-table-toolbar-bg) !important;
+    color: var(--mobile-db-table-muted-text) !important;
+}
+
+html.is-mobile :where(div, section):has(> button [class*="table"]):has(> button [class*="plus"])
+    :where(span, [class*="count"], [class*="muted"], [class*="opacity"]) {
+    color: var(--mobile-db-table-view-count) !important;
+    opacity: 1 !important;
+}
+
+html.is-mobile :where(div, section):has(> button [class*="table"]):has(> button [class*="plus"])
+    :where(svg, i, [class*="icon"], [class*="tabler"]) {
+    color: var(--mobile-db-table-muted-text) !important;
+    stroke: currentColor !important;
+}
+
+/*
+ * Keep paired row-hover actions closely grouped, then add separate clearance
+ * after the final button so it does not clip at the right-hand cell boundary.
+ */
+html.is-mobile [class*="table"]:not([class*="tabler"]):not([class*="icon"]):not([class*="ti-"])
+    :where(div, span):has(> button + button) {
+    column-gap: 2px !important;
+}
+
+html.is-mobile [class*="table"]:not([class*="tabler"]):not([class*="icon"]):not([class*="ti-"])
+    :where(div, span):has(> button + button) > button:last-child {
+    margin-inline-end: 6px !important;
+}
+
+html:not(.is-mobile) [class*="table"]:not([class*="tabler"]):not([class*="icon"]):not([class*="ti-"])
+    :where(div, span):has(> button + button) {
+    column-gap: 2px !important;
+}
+
+html:not(.is-mobile) [class*="table"]:not([class*="tabler"]):not([class*="icon"]):not([class*="ti-"])
+    :where(div, span):has(> button + button) > button:last-child {
+    margin-inline-end: 6px !important;
+}
