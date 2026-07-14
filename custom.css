@@ -385,3 +385,52 @@ button.ui__button:has(.ls-icon-color-wrap .ui__icon[class*="ls-icon-"]) {
     opacity: 1 !important;
     pointer-events: auto;
   }
+
+/***************************************************************
+******** MOBILE: LOGSEQ DB BLOCK/NODE REFERENCE PILLS *********
+***************************************************************/
+
+/*
+ * Logseq DB mobile omits the desktop .preview-ref-link wrapper.
+ * A block/node reference is exposed as .page-reference containing
+ * .block-title-wrap, while ordinary page references do not contain it.
+ */
+html.is-mobile .page-reference:has(.block-title-wrap) {
+    border-bottom: none !important;
+    border-radius: 3px !important;
+    padding: 2px 5px !important;
+    background: var(--custom-block-ref-bg) !important;
+    color: var(--ls-primary-text-color) !important;
+    line-height: 1.25 !important;
+    text-decoration: none !important;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+}
+
+/* Prevent nested title/link elements from painting a second pill. */
+html.is-mobile .page-reference:has(.block-title-wrap) > .page-ref,
+html.is-mobile .page-reference:has(.block-title-wrap) .block-title-wrap {
+    padding: 0 !important;
+    background: transparent !important;
+    color: inherit !important;
+    text-decoration: none !important;
+}
+
+html.is-mobile .page-reference:has(.block-title-wrap):hover,
+html.is-mobile .page-reference:has(.block-title-wrap):active {
+    background: var(--custom-block-ref-bg-hover) !important;
+}
+
+/* Preserve the coral accent for references nested inside a block title. */
+html.is-mobile .page-reference:has(.block-title-wrap) .page-reference,
+html.is-mobile .page-reference:has(.block-title-wrap) .page-reference .page-ref,
+html.is-mobile .page-reference:has(.block-title-wrap) .tag {
+    color: #C96552 !important;
+    background: transparent !important;
+}
+
+html.is-mobile .page-reference:has(.block-title-wrap) .page-reference:hover,
+html.is-mobile .page-reference:has(.block-title-wrap) .page-reference:hover .page-ref,
+html.is-mobile .page-reference:has(.block-title-wrap) .tag:hover {
+    color: #D9816F !important;
+}
