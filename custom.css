@@ -214,6 +214,61 @@ a:hover,
     color: #D9816F;
 }
 
+/* PDF/file asset references */
+:where(
+    a.asset-ref,
+    .asset-ref,
+    .asset-ref.is-pdf,
+    a.is-pdf,
+    a[href*="pdf__"],
+    [data-ref^="pdf__"],
+    [data-ref*="/pdf__"],
+    a[data-ref^="pdf__"],
+    a[data-ref*="/pdf__"]
+) {
+    color: #C96552 !important;
+}
+
+:where(
+    a.asset-ref:hover,
+    .asset-ref:hover,
+    .asset-ref.is-pdf:hover,
+    a.is-pdf:hover,
+    a[href*="pdf__"]:hover,
+    [data-ref^="pdf__"]:hover,
+    [data-ref*="/pdf__"]:hover,
+    a[data-ref^="pdf__"]:hover,
+    a[data-ref*="/pdf__"]:hover
+) {
+    color: #D9816F !important;
+}
+
+:where(
+    a.asset-ref,
+    .asset-ref,
+    .asset-ref.is-pdf,
+    a.is-pdf,
+    a[href*="pdf__"],
+    [data-ref^="pdf__"],
+    [data-ref*="/pdf__"],
+    a[data-ref^="pdf__"],
+    a[data-ref*="/pdf__"]
+) :where(span, svg, i),
+:where(
+    a.asset-ref,
+    .asset-ref,
+    .asset-ref.is-pdf,
+    a.is-pdf,
+    a[href*="pdf__"],
+    [data-ref^="pdf__"],
+    [data-ref*="/pdf__"],
+    a[data-ref^="pdf__"],
+    a[data-ref*="/pdf__"]
+)::before {
+    color: currentColor !important;
+    stroke: currentColor !important;
+}
+
 /* BuJo-style block reference pills for Logseq DB and MD */
 :root,
 html[data-theme=dark],
