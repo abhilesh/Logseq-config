@@ -3267,6 +3267,12 @@ a:hover,
     color: #D9816F;
 }
 
+/* Logseq DB scheduled/deadline datetime property values */
+.bottom-property-pill .property-value-inner[data-type="datetime"],
+.bottom-property-pill .property-value-inner[data-type="datetime"] * {
+    color: #D7A86E !important;
+}
+
 /* PDF/file asset references */
 :where(
     a.asset-ref,
