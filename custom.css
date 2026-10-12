@@ -3554,17 +3554,19 @@ html.is-mobile .page-reference:has(.block-title-wrap) .tag:hover {
 ***************************************************************/
 
 html.is-mobile {
-    --mobile-db-table-bg: #221D1C;
-    --mobile-db-table-header-bg: #433936;
-    --mobile-db-table-control-bg: #3A302D;
-    --mobile-db-table-control-hover-bg: #4A3D38;
+    /* Use the desktop BuJo tokens directly; mobile overrides the generic --ls-* tokens. */
+    --mobile-db-table-bg: var(--bujo-background2_5);
+    --mobile-db-table-header-bg: var(--bujo-background3);
+    --mobile-db-table-control-bg: var(--bujo-background6);
+    --mobile-db-table-control-hover-bg: var(--bujo-background7);
     --mobile-db-table-toolbar-bg: transparent;
-    --mobile-db-table-border: rgba(201, 101, 82, .22);
-    --mobile-db-table-text: #C8B6A6;
-    --mobile-db-table-view-count: var(--mobile-db-table-text);
-    --mobile-db-table-muted-text: #9F8B80;
-    --mobile-db-table-accent: #C96552;
-    --mobile-db-table-accent-hover: #D9816F;
+    --mobile-db-table-border: var(--bujo-fill1);
+    --mobile-db-table-text: var(--bujo-foreground1);
+    --mobile-db-table-view-count: var(--bujo-foreground2);
+    --mobile-db-table-muted-text: var(--bujo-foreground2);
+    --mobile-db-table-accent: var(--bujo-accent-normal);
+    --mobile-db-table-accent-hover: var(--bujo-accent-clean);
+    --ls-table-tr-even-background-color: var(--bujo-background4);
 }
 
 /* Flatten the verified right-hand DB-view action controls. */
@@ -3654,8 +3656,35 @@ html.is-mobile :where(
     background-color: var(--mobile-db-table-header-bg) !important;
     color: var(--mobile-db-table-text) !important;
     border-color: var(--mobile-db-table-border) !important;
-    border-radius: 10px !important;
+    border-radius: 0 !important;
     font-weight: 600 !important;
+}
+
+/* Mobile DB rows paint their own zebra background. Keep them on the desktop
+ * BuJo palette instead of the mobile Solarized default. */
+html.is-mobile [class*="table"]:not([class*="tabler"]):not([class*="icon"]):not([class*="ti-"])
+    :is(tr, [class*="table-row"], [role="row"], [class*="row"])
+    :not([class*="header"]):not([class*="head"]):nth-child(odd) {
+    background-color: var(--bujo-background2_5) !important;
+}
+
+html.is-mobile [class*="table"]:not([class*="tabler"]):not([class*="icon"]):not([class*="ti-"])
+    :is(tr, [class*="table-row"], [role="row"], [class*="row"])
+    :not([class*="header"]):not([class*="head"]):nth-child(even) {
+    background-color: var(--bujo-background4) !important;
+}
+
+/* Some renderers paint the background on each cell instead of the row. */
+html.is-mobile [class*="table"]:not([class*="tabler"]):not([class*="icon"]):not([class*="ti-"])
+    :is(tr, [class*="table-row"], [role="row"], [class*="row"])
+    :not([class*="header"]):not([class*="head"]):nth-child(odd) > :is(td, th, [role="cell"]) {
+    background-color: var(--bujo-background2_5) !important;
+}
+
+html.is-mobile [class*="table"]:not([class*="tabler"]):not([class*="icon"]):not([class*="ti-"])
+    :is(tr, [class*="table-row"], [role="row"], [class*="row"])
+    :not([class*="header"]):not([class*="head"]):nth-child(even) > :is(td, th, [role="cell"]) {
+    background-color: var(--bujo-background4) !important;
 }
 
 html.is-mobile [class*="table"]:not([class*="tabler"]):not([class*="icon"]):not([class*="ti-"])
