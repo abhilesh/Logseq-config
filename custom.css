@@ -2050,13 +2050,35 @@ button.to-heading-button.ui__button {
     background-color: transparent;
     transition: none;
 }
-button.to-heading-button.ui__button:hover {
-    color: var(--bujo-button-accent-text);
-    background-color: var(--bujo-button-background);
-    opacity: .9;
+
+/* Keep the H1–H6 picker controls unboxed in every interaction state. */
+button.to-heading-button,
+button.to-heading-button:hover,
+button.to-heading-button:active,
+button.to-heading-button:focus,
+button.to-heading-button:focus-visible,
+button.to-heading-button:disabled {
+    color: var(--bujo-button-text) !important;
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
 }
 button.to-heading-button.ui__button:focus {
     border-color: var(--bujo-button-accent-border-focus);
+}
+
+/* Reference fold headers have their own surface, separate from button styling. */
+.references-blocks-item,
+.references-blocks-item .with-foldable-page,
+.references-blocks-item .with-foldable-page:hover,
+.references-blocks-item button.ui__button,
+.references-blocks-item button.ui__button:hover {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
 }
 
 
@@ -3780,4 +3802,104 @@ html:not(.is-mobile) [class*="table"]:not([class*="tabler"]):not([class*="icon"]
 html:not(.is-mobile) [class*="table"]:not([class*="tabler"]):not([class*="icon"]):not([class*="ti-"])
     :where(div, span):has(> button + button) > button:last-child {
     margin-inline-end: 6px !important;
+}
+
+/*
+ * Final surface reset for the heading picker and reference fold headers.
+ * Logseq renders the reference title in .ls-foldable-title/.ls-foldable-header;
+ * .references-blocks-item alone does not reach that title surface.
+ */
+html button.to-heading-button.ui__button,
+html button.to-heading-button.ui__button:hover,
+html button.to-heading-button.ui__button:active,
+html button.to-heading-button.ui__button:focus,
+html button.to-heading-button.ui__button:focus-visible,
+html button.to-heading-button.ui__button:disabled {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+/* Fallback for Logseq builds that omit or change .to-heading-button. */
+html div.flex.flex-row.justify-between.pb-2.pt-1.px-2.items-center button.ui__button,
+html div.flex.flex-row.justify-between.pb-2.pt-1.px-2.items-center button.ui__button:hover,
+html div.flex.flex-row.justify-between.pb-2.pt-1.px-2.items-center button.ui__button:active,
+html div.flex.flex-row.justify-between.pb-2.pt-1.px-2.items-center button.ui__button:focus,
+html div.flex.flex-row.justify-between.pb-2.pt-1.px-2.items-center button.ui__button:focus-visible,
+html div.flex.flex-row.justify-between.pb-2.pt-1.px-2.items-center button.ui__button:disabled {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+.references button.ui__button,
+.references button.ui__button:hover,
+.references button.ui__button:active,
+.references button.ui__button:focus,
+.references button.ui__button:focus-visible {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+/* DB unlinked references use a view header around the title and plus action. */
+.references .ls-view-head,
+.references .ls-view-head > *,
+.references .ls-view-head .views,
+.references .ls-view-head .view-actions,
+.references .ls-view-head .foldable-title,
+.references .ls-view-head h2 {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+/* DB view tabs can be rendered outside the legacy .references wrapper. */
+.ls-view-head .views,
+.ls-view-head .views > *,
+.ls-view-head .views button.ui__button,
+.ls-view-head .views button.ui__button:hover,
+.ls-view-head .views button.ui__button:active,
+.ls-view-head .views button.ui__button:focus,
+.ls-view-head .views button.ui__button:focus-visible,
+.ls-view-head .views button.ui__button > *,
+.ls-view-head .views button.ui__button > *::before,
+.ls-view-head .views button.ui__button > *::after {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.references .ls-foldable-title,
+.references .ls-foldable-title.content,
+.references .foldable-title,
+.references .foldable-title h2,
+.references .foldable-title .rotating-arrow,
+.references .foldable-title .ui__icon,
+.references .ls-foldable-header,
+.references .ls-foldable-header h2,
+.references .ls-foldable-header button,
+.references .ls-foldable-header a,
+.references-blocks-item,
+.references-blocks-item .with-foldable-page,
+.references-blocks-item .with-foldable-page:hover {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border: 0 !important;
+    box-shadow: none !important;
+}
+
+.references-blocks-item {
+    padding: 0 !important;
 }
