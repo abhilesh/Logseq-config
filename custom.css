@@ -1,6 +1,32 @@
 /* Bundled from stdword/logseq-bujo-theme src/base.css */
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 
+/*
+ * Logseq renders DB view tabs as buttons inside `.ls-foldable-header .views`.
+ * Keep this first so the rule survives Logseq's large custom.css data-URL
+ * cutoff and beat the button component's background rule by specificity.
+ */
+html body .ls-foldable-header .views > button[data-view-tab-id],
+html body .ls-foldable-header .views > button[data-view-tab-id]:hover,
+html body .ls-foldable-header .views > button[data-view-tab-id]:active,
+html body .ls-foldable-header .views > button[data-view-tab-id]:focus,
+html body .ls-foldable-header .views > button[data-view-tab-id]:focus-visible {
+    background: transparent !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Match the top-bar utility icons to the puzzle icon's darker toolbar color. */
+#head .ls-icon-user-plus,
+#head .ls-icon-cloud,
+#head .ls-icon-home,
+#head .injected-ui-item-toolbar .ti-edit-circle,
+#head .injected-ui-item-toolbar .ti-calendar-event {
+    color: var(--ls-header-button-background) !important;
+}
+
 
 /* logseq non-color vars */
 :root {
